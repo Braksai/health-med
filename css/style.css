@@ -1,13 +1,16 @@
 body {
-  background-color: #f8f8f8;
+  background-color: #fff;
 }
 #wrapper {
   width: 100%;
 }
+#wrapper nav.navbar-default {
+    background-color: #fff;
+}
 #page-wrapper {
   padding: 0 15px;
   min-height: 568px;
-  background-color: white;
+  background-color: #f8f8f8;
 }
 @media (min-width: 768px) {
   #page-wrapper {
@@ -29,6 +32,7 @@ body {
 .navbar-top-links li a {
   padding: 15px;
   min-height: 50px;
+  font-size: 18px;
 }
 .navbar-top-links .dropdown-menu li {
   display: block;
@@ -70,10 +74,18 @@ body {
   padding: 15px;
 }
 .sidebar ul li {
-  border-bottom: 1px solid #e7e7e7;
+  background-color: #35cbd2;
+  border-bottom: 1px solid #fff;
 }
-.sidebar ul li a.active {
-  background-color: #eeeeee;
+.sidebar ul li a:hover {
+  background-color: #00c2c7;
+}
+.sidebar ul li a.active, .sidebar ul li a:focus  {
+  background-color: #fb3d50;
+}
+.sidebar ul li a {
+  color: #fff;
+  font-size: 18px;
 }
 .sidebar .arrow {
   float: right;
@@ -99,7 +111,7 @@ body {
     z-index: 1;
     position: absolute;
     width: 250px;
-    margin-top: 51px;
+    margin-top: 55px;
   }
   .navbar-top-links .dropdown-messages,
   .navbar-top-links .dropdown-tasks,

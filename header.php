@@ -26,7 +26,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php"><i class="fa fa-plus-circle fa-fw" style="color: #ed4e3a;"></i> HealthMed</a>
+                <a class="navbar-brand" href="index.php" style="font-size: 24px;"><i class="fa fa-plus-circle fa-fw" style="color: #fb3d50;"></i> HealthMed</a>
             </div>
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
