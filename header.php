@@ -35,7 +35,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li>
-                            <a href="login.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            <a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                 </li>

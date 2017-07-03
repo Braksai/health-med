@@ -1,4 +1,30 @@
 <!DOCTYPE html>
+<?php
+include_once 'db.php';
+
+$error = false;
+
+if(isset($_SESSION['user'])){
+	header('Location: index.php');
+}
+
+if(isset($_POST['submit'])){
+	$user = mysqli_real_escape_string($con, $_POST['utilizator']);
+	$password = hash('sha256', $_POST['parola']);
+
+	$query = "SELECT * FROM `utilizatori` WHERE `utilizator`='$user' AND `parola`='$password' AND `acceptat`=1;";
+
+
+	if(mysqli_num_rows(mysqli_query($con, $query))==1){
+		$_SESSION['user'] = $user;
+		header('Location: index.php');
+	}
+	else{
+		$error = true;
+	}
+}
+
+?>
 <html>
     <head>
         <meta charset="utf-8">
@@ -29,17 +55,17 @@
                                     <div class="form-group">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
-                                            <input type="text" name="username" class="form-control input-lg" placeholder="Utilizator" value="<?php //echo $username;    ?>" maxlength="40" autofocus required/>
+                                            <input type="text" name="utilizator" class="form-control input-lg" placeholder="Utilizator" value="<?php echo $user;    ?>" maxlength="40" autofocus required/>
                                         </div>
                                         <span class="text-danger"><?php //echo $userError;    ?></span>
                                     </div>
                                     <div class="form-group">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-key fa-fw" aria-hidden="true"></i></span>
-                                            <input type="password" name="pass" class="form-control input-lg" placeholder="Parola" maxlength="40" required/>
-                                            <span class="input-group-btn"><button class="btn btn-lg btn-danger" type="submit"><i class="fa fa-chevron-right fa-fw" aria-hidden="true"></i></button></span>
+                                            <input type="password" name="parola" class="form-control input-lg" placeholder="Parola" maxlength="40" required/>
+                                            <span class="input-group-btn"><button class="btn btn-lg btn-danger" type="submit" name="submit"><i class="fa fa-chevron-right fa-fw" aria-hidden="true"></i></button></span>
                                         </div>
-                                        <span class="text-danger"><?php //echo $passError;   ?></span>
+                                        <span class="text-danger"><?php if($error){echo "Utilizator gresit sau parola incorecta";}   ?></span>
                                     </div>
                                     <div class="form-group">
                                         <hr />
@@ -57,6 +83,3 @@
     </body>
 
 </html>
-
-<?php
-include_once 'db.php';
