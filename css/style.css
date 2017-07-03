@@ -1,3 +1,15 @@
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+.clearfix { display: inline-block; }
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+
 body {
   background-color: #fff;
 }
@@ -263,4 +275,10 @@ table.dataTable thead .sorting:after {
 .panel-login-text {
     padding: 5px 0;
     font-size: 20px!important;
+}
+
+.label-helper {
+    line-height: 34px;
+    font-size: 16px;
+    text-align: right;
 }

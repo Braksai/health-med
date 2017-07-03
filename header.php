@@ -49,13 +49,13 @@
                             <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Home</a>
                         </li>
                         <li>
-                            <a href="pacienti0.php"><i class="fa fa-users fa-fw"></i> Pacienti</a>
+                            <a href="pacienti.php"><i class="fa fa-users fa-fw"></i> Pacienti</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Statistici<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="pacienti.php">Tensiune arteriala</a>
+                                    <a href="pacienti0.php">Tensiune arteriala</a>
                                 </li>
                                 <li>
                                     <a href="pacienti2.php">Temperatura</a>
