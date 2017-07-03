@@ -4,6 +4,30 @@ if (!isset($_SESSION['user']))
     header('Location: login.php');
 
 include_once 'header.php';
+
+$error = false;
+if(isset($_POST['submit'])){
+	if(!isset($_POST['sex'])){
+		$error = true;
+	}
+	else{
+		$name = mysqli_real_escape_string($con, $_POST['nume']);
+		$surname = mysqli_real_escape_string($con, $_POST['prenume']);
+		$phone = mysqli_real_escape_string($con, $_POST['telefon']);
+		$cnp = mysqli_real_escape_string($con, $_POST['cnp']);
+		$email = mysqli_real_escape_string($con, $_POST['email']);
+		$address = mysqli_real_escape_string($con, $_POST['adresa']);
+		$city = mysqli_real_escape_string($con, $_POST['oras']);
+		$sex = mysqli_real_escape_string($con, $_POST['sex']);
+		$age = mysqli_real_escape_string($con, $_POST['varsta']);
+
+		$query = "INSERT INTO persoane (nume, prenume, telefon, cnp, email, adresa, oras, sex, varsta) 
+		VALUES ('$name', '$surname', '$phone', '$cnp', '$email', '$address', '$city', '$sex', '$age');";
+		mysqli_query($con, $query);
+		mysqli_close($con);
+		header('Location: pacienti.php');
+	}
+}
 ?>
 <div id="page-wrapper">
 
@@ -78,6 +102,14 @@ include_once 'header.php';
                             <button type="submit" class="form-control btn btn-default" name="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i> Adauga</button>
                         </div>
                     </div>
+		<?php
+           	if($error){                                    
+                        echo '<div class="alert alert-danger alert-dismissable fade in">
+                          	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        	<strong>Ati uitat sa selectati sexul!</strong>
+                          	</div>';
+               	}
+               	?>
                 </form>
             </div>
         </div>
