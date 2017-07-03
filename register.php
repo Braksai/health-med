@@ -59,28 +59,28 @@ else
                                     <div class="form-group">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
-                                            <input type="text" name="nume" class="form-control input-lg" placeholder="Nume" value="<?php echo $_POST['nume'];    ?>" maxlength="40" autofocus required/>
+                                            <input type="text" name="nume" class="form-control input-lg" placeholder="Nume" value="<?php if(isset($_POST['submit'])){echo $_POST['nume'];}    ?>" maxlength="40" autofocus required/>
                                         </div>
                                         <span class="text-danger"><?php //echo $_POST['nume'];    ?></span>
                                     </div>
                                     <div class="form-group">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
-                                            <input type="text" name="prenume" class="form-control input-lg" placeholder="Prenume" value="<?php echo $_POST['prenume'];    ?>" maxlength="40" autofocus required/>
+                                            <input type="text" name="prenume" class="form-control input-lg" placeholder="Prenume" value="<?php if(isset($_POST['submit'])){echo $_POST['prenume'];}    ?>" maxlength="40" autofocus required/>
                                         </div>
                                         <span class="text-danger"><?php //echo $_POST['prenume'];    ?></span>
                                     </div>
                                     <div class="form-group">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
-                                            <input type="text" name="email" class="form-control input-lg" placeholder="Email" value="<?php echo $_POST['email'];    ?>" maxlength="40" autofocus required/>
+                                            <input type="text" name="email" class="form-control input-lg" placeholder="Email" value="<?php if(isset($_POST['submit'])){echo $_POST['email'];}    ?>" maxlength="40" autofocus required/>
                                         </div>
                                         <span class="text-danger"><?php //echo $_POST['email'];    ?></span>
                                     </div>
                                     <div class="form-group">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
-                                            <input type="text" name="utilizator" class="form-control input-lg" placeholder="Utilizator" value="<?php if(!$error){echo $_POST['utilizator'];}    ?>" maxlength="40" autofocus required/>
+                                            <input type="text" name="utilizator" class="form-control input-lg" placeholder="Utilizator" value="<?php if(!$error && isset($_POST['submit'])){echo $_POST['utilizator'];}    ?>" maxlength="40" autofocus required/>
                                         </div>
                                         <span class="text-danger"><?php //echo $_POST['utilizator'];    ?></span>
                                     </div>

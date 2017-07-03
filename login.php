@@ -55,7 +55,7 @@ if(isset($_POST['submit'])){
                                     <div class="form-group">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
-                                            <input type="text" name="utilizator" class="form-control input-lg" placeholder="Utilizator" value="<?php echo $user;    ?>" maxlength="40" autofocus required/>
+                                            <input type="text" name="utilizator" class="form-control input-lg" placeholder="Utilizator" value="<?php if(isset($_POST['utilizator'])){echo $_POST['utilizator'];}    ?>" maxlength="40" autofocus required/>
                                         </div>
                                         <span class="text-danger"><?php //echo $userError;    ?></span>
                                     </div>
