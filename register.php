@@ -23,7 +23,7 @@ else
 	$query = "INSERT INTO utilizatori (nume, prenume, email, utilizator, parola) 
 	VALUES ('$name', '$surname', '$email', '$user', '$password');";
 	mysqli_query($con, $query);	
-	header('Location: index.php');
+	header('Location: login.php');
 }
 }
 
@@ -58,22 +58,22 @@ else
                                 <fieldset>
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
+                                            <span class="input-group-addon"><i class="fa fa-id-card fa-fw" aria-hidden="true"></i></span>
                                             <input type="text" name="nume" class="form-control input-lg" placeholder="Nume" value="<?php if(isset($_POST['submit'])){echo $_POST['nume'];}    ?>" maxlength="40" autofocus required/>
                                         </div>
                                         <span class="text-danger"><?php //echo $_POST['nume'];    ?></span>
                                     </div>
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
+                                            <span class="input-group-addon"><i class="fa fa-id-card-o fa-fw" aria-hidden="true"></i></span>
                                             <input type="text" name="prenume" class="form-control input-lg" placeholder="Prenume" value="<?php if(isset($_POST['submit'])){echo $_POST['prenume'];}    ?>" maxlength="40" autofocus required/>
                                         </div>
                                         <span class="text-danger"><?php //echo $_POST['prenume'];    ?></span>
                                     </div>
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
-                                            <input type="text" name="email" class="form-control input-lg" placeholder="Email" value="<?php if(isset($_POST['submit'])){echo $_POST['email'];}    ?>" maxlength="40" autofocus required/>
+                                            <span class="input-group-addon"><i class="fa fa-envelope fa-fw" aria-hidden="true"></i></span>
+                                            <input type="email" name="email" class="form-control input-lg" placeholder="Email" value="<?php if(isset($_POST['submit'])){echo $_POST['email'];}    ?>" maxlength="40" autofocus required/>
                                         </div>
                                         <span class="text-danger"><?php //echo $_POST['email'];    ?></span>
                                     </div>
@@ -88,15 +88,24 @@ else
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-key fa-fw" aria-hidden="true"></i></span>
                                             <input type="password" name="parola" class="form-control input-lg" placeholder="Parola" maxlength="40" required/>
-                                            <span class="input-group-btn"><button class="btn btn-lg btn-danger" type="submit" name="submit"><i class="fa fa-chevron-right fa-fw" aria-hidden="true"></i></button></span>
                                         </div>
                                         <span class="text-danger"><?php //echo $_POST['parola'];   ?></span>
                                     </div>
-<?php
-if($error){
-	echo '<span class="text-danger"> Utilizator existent. </span>';
-}
-?>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-lg btn-block btn-danger" name="submit"><i class="fa fa-key" aria-hidden="true"></i> Inregistrare</button>
+                                    </div>
+                                    <?php
+                                    if($error){                                    
+                                            echo '<div class="alert alert-danger alert-dismissable fade in">
+                                                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                 <strong>Alege un alt nume de utilizator!</strong>
+                                             </div>';
+                                    }
+                                    ?>
+                                    <div class="form-group">
+                                        <hr />
+                                    </div>
+                                    <label>Ai un cont creat? <a href="login.php" class="text-danger">Logare</a></label>
                                 </fieldset>
                             </form>
                         </div>

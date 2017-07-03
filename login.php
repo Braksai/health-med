@@ -65,8 +65,13 @@ if(isset($_POST['submit'])){
                                             <input type="password" name="parola" class="form-control input-lg" placeholder="Parola" maxlength="40" required/>
                                             <span class="input-group-btn"><button class="btn btn-lg btn-danger" type="submit" name="submit"><i class="fa fa-chevron-right fa-fw" aria-hidden="true"></i></button></span>
                                         </div>
-                                        <span class="text-danger"><?php if($error){echo "Utilizator gresit sau parola incorecta";}   ?></span>
                                     </div>
+                                    <?php if($error){
+                                        echo '<div class="alert alert-danger alert-dismissable fade in">
+                                                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                 <strong>Utilizator gresit sau parola incorecta!</strong>
+                                             </div>';
+                                    }?>
                                     <div class="form-group">
                                         <hr />
                                     </div>
@@ -79,7 +84,8 @@ if(isset($_POST['submit'])){
                 </div>
             </div>
         </div>
-
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
     </body>
 
 </html>
