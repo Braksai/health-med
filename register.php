@@ -22,7 +22,8 @@ else
 
 	$query = "INSERT INTO utilizatori (nume, prenume, email, utilizator, parola) 
 	VALUES ('$name', '$surname', '$email', '$user', '$password');";
-	mysqli_query($con, $query);	
+	mysqli_query($con, $query);
+	mysqli_close($con);
 	header('Location: login.php');
 }
 }

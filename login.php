@@ -16,7 +16,10 @@ if(isset($_POST['submit'])){
 
 
 	if(mysqli_num_rows(mysqli_query($con, $query))==1){
-		$_SESSION['user'] = $user;
+		$row = mysqli_fetch_array(mysqli_query($con, $query));
+		$_SESSION['user'] = $row['nume']." ".$row['prenume'];
+		mysqli_free_result();
+		mysqli_close($con);
 		header('Location: index.php');
 	}
 	else{
