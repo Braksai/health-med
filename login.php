@@ -2,7 +2,8 @@
 <?php
 include_once 'db.php';
 
-$error = false;
+$error = 0;
+$errorMessage = array("", "Utilizator gresit sau parola incorecta!", "Utilizatorul nu este acceptat!");
 
 if(isset($_SESSION['user'])){
 	header('Location: index.php');
@@ -12,18 +13,23 @@ if(isset($_POST['submit'])){
 	$user = mysqli_real_escape_string($con, $_POST['utilizator']);
 	$password = hash('sha256', $_POST['parola']);
 
-	$query = "SELECT * FROM `utilizatori` WHERE `utilizator`='$user' AND `parola`='$password' AND `acceptat`=1;";
+	$query = "SELECT * FROM `utilizatori` WHERE `utilizator`='$user' AND `parola`='$password';";
 
 
 	if(mysqli_num_rows(mysqli_query($con, $query))==1){
 		$row = mysqli_fetch_array(mysqli_query($con, $query));
-		$_SESSION['user'] = $row['nume']." ".$row['prenume'];
-		mysqli_free_result();
-		mysqli_close($con);
-		header('Location: index.php');
+		if($row['acceptat'] == 1){
+			$_SESSION['user'] = $row['nume']." ".$row['prenume'];
+			mysqli_free_result();
+			mysqli_close($con);
+			header('Location: index.php');
+		}
+		else{
+			$error = 2;
+		}
 	}
 	else{
-		$error = true;
+		$error = 1;
 	}
 }
 
@@ -72,7 +78,7 @@ if(isset($_POST['submit'])){
                                     <?php if($error){
                                         echo '<div class="alert alert-danger alert-dismissable fade in">
                                                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                                 <strong>Utilizator gresit sau parola incorecta!</strong>
+                                                 <strong>'.$errorMessage[$error].'</strong>
                                              </div>';
                                     }?>
                                     <div class="form-group">
