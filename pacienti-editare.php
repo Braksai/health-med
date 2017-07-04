@@ -26,17 +26,15 @@ else{
 		$age = mysqli_real_escape_string($con, $_POST['varsta']);
 
 		$query = "UPDATE `persoane` SET `nume`='$name', `prenume`='$surname', `telefon`='$phone', `cnp`='$cnp', `email`='$email', 
-			 	`adresa`='$address', `oras`='$city', `sex`='$sex', `varsta`=$age WHERE `cnp`='$user'";
+			 	`adresa`='$address', `oras`='$city', `sex`='$sex', `varsta`=$age WHERE `id`='$user'";
 		mysqli_query($con, $query);
 		mysqli_close($con);
-		header('Location: pacienti.php');
+		header('Location: pacienti.php?action=2');
 	}
 
 
-	$query = "SELECT * FROM `persoane` WHERE `cnp`='$user';";
-	echo$query;
+	$query = "SELECT * FROM `persoane` WHERE `id`='$user';";
 	$row = mysqli_fetch_array(mysqli_query($con, $query));
-	echo"test".$row['nume'];
 }
 ?>
 <div id="page-wrapper">

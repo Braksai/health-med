@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 include_once 'db.php';
 if (!isset($_SESSION['user']))
     header('Location: login.php');
@@ -13,6 +13,7 @@ $searchdetails2 = '';
 $resultNotFound = '';
 $paginationStructure = '';
 $querySearch = '';
+$actionMessage = array("", "Persoana a fost adaugata!", "Persoana a fost editata!");
 if(isset($_GET['search'])){
     $querySearch = $_GET['search']; 
     $min_length = 3;
@@ -99,10 +100,20 @@ if($rows > 0) {
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="alert alert-success alert-dismissable fade in">
-                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    <strong>Success!</strong> Mesaj
-                </div>
+		<?php
+		if(isset($_GET['action'])){
+		echo'
+                	<div class="alert alert-success alert-dismissable fade in" id="removealert">
+                    		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    		<strong>Success!</strong> '.$actionMessage[$_GET['action']].'
+                	</div>
+			<SCRIPT LANGUAGE="JavaScript">
+				setTimeout(function(){
+				$("#removealert").remove();
+				}, 4000);
+			</SCRIPT>';
+		}
+		?>
             </div>
         </div>
         <div class="row">

@@ -25,7 +25,7 @@ if(isset($_POST['submit'])){
 		VALUES ('$name', '$surname', '$phone', '$cnp', '$email', '$address', '$city', '$sex', '$age');";
 		mysqli_query($con, $query);
 		mysqli_close($con);
-		header('Location: pacienti.php');
+		header('Location: pacienti.php?action=1');
 	}
 }
 ?>
