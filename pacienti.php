@@ -71,10 +71,6 @@ if($rows > 0) {
         $paginationStructure .= '</ul>';
     }
     while($row = mysqli_fetch_array($query, MYSQLI_ASSOC)){
-        $name = $row["nume"];
-        $surname = $row["prenume"];
-	$surname = $row["cnp"];
-        $phone = $row["telefon"];
         $table.='<TR>
 		<TD>'.$row["nume"].'</TD>
 		<TD>'.$row["prenume"].'</TD>
