@@ -4,6 +4,93 @@ if (!isset($_SESSION['user']))
     header('Location: login.php');
 
 include_once 'header.php';
+
+$whereSearch = '';
+$link = '';
+$table = '';
+$searchdetails1 = '';
+$searchdetails2 = '';
+$resultNotFound = '';
+$paginationStructure = '';
+if(isset($_GET['search'])){
+    $querySearch = $_GET['search']; 
+    $min_length = 3;
+    if(strlen($querySearch) >= $min_length){
+        $querySearch = htmlspecialchars($querySearch); 
+        $querySearch = mysqli_real_escape_string($con, $querySearch);
+        $link = empty($querySearch) ? '': 'search='.$querySearch.'&';
+        $whereSearch = "AND nume LIKE '%".$querySearch."%' OR prenume LIKE '%".$querySearch."%' OR cnp LIKE '%".$querySearch."%' ";
+    }
+}
+$sql = "SELECT COUNT(id) FROM persoane WHERE sters=0 ".$whereSearch;
+$query = mysqli_query($con, $sql);
+$row = mysqli_fetch_row($query);
+$rows = $row[0];
+if($rows > 0) {
+    $page_rows = 4;// numar de carti vizualizate per pagina
+    $last = ceil($rows/$page_rows);
+    if($last < 1){
+        $last = 1;
+    }
+    $pagenum = 1;
+    if(isset($_GET['pageNr'])){
+        $pagenum = preg_replace('#[^0-9]#', '', $_GET['pageNr']);
+    }
+    if ($pagenum < 1) {
+        $pagenum = 1;
+    } else if ($pagenum > $last) {
+        $pagenum = $last;
+    }
+    $limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
+    $sql = "SELECT `nume`, `prenume`, `cnp`, `telefon` FROM persoane WHERE `sters`=0 ". $whereSearch ."ORDER BY `nume` ASC $limit";
+    $query = mysqli_query($con, $sql);
+    $searchdetails1 = "Numar total pacienti: (<b>$rows</b>)";
+    $searchdetails2 = "Pagina <b>$pagenum</b> din <b>$last</b>";
+    $paginationStructure = '<ul class="pagination">';
+    if($last != 1){
+        if ($pagenum > 1) {
+            $previous = $pagenum - 1;
+            $paginationStructure .= '<li><a href="'.$_SERVER['PHP_SELF'].'?'.$link.'pageNr='.$previous.'">«</a></li>';
+            for($i = $pagenum-4; $i < $pagenum; $i++){
+                if($i > 0){
+                $paginationStructure .= '<li><a href="'.$_SERVER['PHP_SELF'].'?'.$link.'pageNr='.$i.'">'.$i.'</a></li>';
+                }
+            }
+        }
+        $paginationStructure .= '<li class="active active-btn-pagination"><a href="">'.$pagenum.'</a></li>';
+        for($i = $pagenum+1; $i <= $last; $i++){
+                $paginationStructure .= '<li><a href="'.$_SERVER['PHP_SELF'].'?'.$link.'pageNr='.$i.'">'.$i.'</a></li>';
+                if($i >= $pagenum+4){
+                        break;
+                }
+        }
+        if ($pagenum != $last) {
+            $next = $pagenum + 1;
+            $paginationStructure .= '<li><a href="'.$_SERVER['PHP_SELF'].'?'.$link.'pageNr='.$next.'">»</a></li> ';
+        }
+        $paginationStructure .= '</ul>';
+    }
+    while($row = mysqli_fetch_array($query, MYSQLI_ASSOC)){
+        $name = $row["nume"];
+        $surname = $row["prenume"];
+	$surname = $row["cnp"];
+        $phone = $row["telefon"];
+        $table.='<TR>
+		<TD>'.$row["nume"].'</TD>
+		<TD>'.$row["prenume"].'</TD>
+		<TD>'.$row["cnp"].'</TD>
+		<TD>'.$row["telefon"].'</TD>
+		<TD><A HREF="#">actiuni...</A></TD>
+	</TR>';
+    }
+} else {
+    $resultNotFound = "Nu exista persoane";
+    if ($querySearch) {
+        $resultNotFound .= " cu numele, prenumele, sau cnpul ".$querySearch;
+    }
+    $resultNotFound .= "!";
+}
+
 ?>
 <div id="page-wrapper">
 
@@ -45,14 +132,16 @@ include_once 'header.php';
                             <tr><th>Nume</th><th>Prenume</th><th>C.N.P.</th><th>Telefon</th><th>Actiuni</th></tr>
                         </thead>
                         <tbody>
-                            <tr><td>s</td><td>s</td><td>s</td><td>s</td><td>s</td></tr>
+                            <?php if(!$resultNotFound){ echo$table;} ?>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-
+<?php if($resultNotFound){echo$resultNotFound;} ?>
+    <div class="row text-center"><?php echo $paginationStructure; ?></div>
+    <div class="row text-center mb15"><?php if(!$resultNotFound){echo $searchdetails2.' , '.$searchdetails1;} ?></div>
 </div>
 <?php
 include_once 'footer.php';
