@@ -12,6 +12,7 @@ $searchdetails1 = '';
 $searchdetails2 = '';
 $resultNotFound = '';
 $paginationStructure = '';
+$querySearch = '';
 if(isset($_GET['search'])){
     $querySearch = $_GET['search']; 
     $min_length = 3;
@@ -50,7 +51,7 @@ if($rows > 0) {
     if($last != 1){
         if ($pagenum > 1) {
             $previous = $pagenum - 1;
-            $paginationStructure .= '<li><a href="'.$_SERVER['PHP_SELF'].'?'.$link.'pageNr='.$previous.'">«</a></li>';
+            $paginationStructure .= '<li><a href="'.$_SERVER['PHP_SELF'].'?'.$link.'pageNr='.$previous.'">Â«</a></li>';
             for($i = $pagenum-4; $i < $pagenum; $i++){
                 if($i > 0){
                 $paginationStructure .= '<li><a href="'.$_SERVER['PHP_SELF'].'?'.$link.'pageNr='.$i.'">'.$i.'</a></li>';
@@ -66,7 +67,7 @@ if($rows > 0) {
         }
         if ($pagenum != $last) {
             $next = $pagenum + 1;
-            $paginationStructure .= '<li><a href="'.$_SERVER['PHP_SELF'].'?'.$link.'pageNr='.$next.'">»</a></li> ';
+            $paginationStructure .= '<li><a href="'.$_SERVER['PHP_SELF'].'?'.$link.'pageNr='.$next.'">Â»</a></li> ';
         }
         $paginationStructure .= '</ul>';
     }
@@ -97,6 +98,14 @@ if($rows > 0) {
     </div>
     <div class="container">
         <div class="row">
+            <div class="col-lg-12">
+                <div class="alert alert-success alert-dismissable fade in">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Success!</strong> Mesaj
+                </div>
+            </div>
+        </div>
+        <div class="row">
             <form action="" id="cautare-pacient" method="GET" accept-charset="UTF-8" class="form-wrapper">
 <!--                <div>
                     <div class="col-lg-6 col-lg-offset-3">-->
@@ -119,18 +128,21 @@ if($rows > 0) {
                 </div>-->
             </form>
         </div>
-        <div class="row">
+        <div class="row" style="margin-top: 30px;">
             <div class="col-lg-12"> 
-                <div class="panel-body">
-                <div class="table-responsive">
-                    <table class="table table-condensed table-hover">
-                        <thead>
-                            <tr><th>Nume</th><th>Prenume</th><th>C.N.P.</th><th>Telefon</th><th>Actiuni</th></tr>
-                        </thead>
-                        <tbody>
-                            <?php if(!$resultNotFound){ echo$table;} ?>
-                        </tbody>
-                    </table>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-condensed table-hover">
+                                <thead>
+                                    <tr><th>Nume</th><th>Prenume</th><th>C.N.P.</th><th>Telefon</th><th>Actiuni</th></tr>
+                                </thead>
+                                <tbody>
+                                    <?php if(!$resultNotFound){ echo$table;} ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
