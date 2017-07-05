@@ -44,7 +44,7 @@ if($rows > 0) {
         $pagenum = $last;
     }
     $limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
-    $sql = "SELECT `nume`, `prenume`, `cnp`, `telefon` FROM persoane WHERE `sters`=0 ". $whereSearch ."ORDER BY `nume` ASC $limit";
+    $sql = "SELECT `id`, `nume`, `prenume`, `cnp`, `telefon` FROM persoane WHERE `sters`=0 ". $whereSearch ."ORDER BY `nume` ASC $limit";
     $query = mysqli_query($con, $sql);
     $searchdetails1 = "Numar total pacienti: (<b>$rows</b>)";
     $searchdetails2 = "Pagina <b>$pagenum</b> din <b>$last</b>";
@@ -59,7 +59,7 @@ if($rows > 0) {
                 }
             }
         }
-        $paginationStructure .= '<li class="active active-btn-pagination"><a href="">'.$pagenum.'</a></li>';
+        $paginationStructure .= '<li class="active active-btn-page"><a href="">'.$pagenum.'</a></li>';
         for($i = $pagenum+1; $i <= $last; $i++){
                 $paginationStructure .= '<li><a href="'.$_SERVER['PHP_SELF'].'?'.$link.'pageNr='.$i.'">'.$i.'</a></li>';
                 if($i >= $pagenum+4){
@@ -78,7 +78,37 @@ if($rows > 0) {
 		<TD>'.$row["prenume"].'</TD>
 		<TD>'.$row["cnp"].'</TD>
 		<TD>'.$row["telefon"].'</TD>
-		<TD><A HREF="#">actiuni...</A></TD>
+		<TD>
+                    <a href="" class="btn btn-default">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                    </a>
+                    <a href="pacienti-editare.php?user='.$row["id"].'" class="btn btn-default">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </a>
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal_' . $row['id'] . '">
+                        <i class="fa fa-times text-danger" aria-hidden="true"></i>
+                    </button>
+                    <div class="modal fade" id="modal_' . $row['id'] . '" role="dialog">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">Stergere Pacient</h4>
+                            </div>
+                            <div class="modal-body">
+                              <p>Doresti sa stergi pacientul ' . $row['nume'] . ' ' . $row['prenume'] . '?</p>
+                            </div>
+                            <div class="modal-footer">
+                              <form name="delete'.$row["id"].'" action="'.htmlspecialchars($_SERVER['PHP_SELF']).'" method="POST">
+                                  <input type="hidden" name="id" value="'.$row["id"].'" />
+                                  <button type="submit" name="delete" class="btn btn-default"><i class="fa fa-trash" aria-hidden="true"></i> Da</button>
+                                  <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-undo" aria-hidden="true"></i> Nu</button>
+                              </form>
+                              </div>
+                          </div>
+                        </div>
+                    </div>
+                </TD>
 	</TR>';
     }
 } else {
@@ -146,7 +176,7 @@ if($rows > 0) {
                         <div class="table-responsive">
                             <table class="table table-condensed table-hover">
                                 <thead>
-                                    <tr><th>Nume</th><th>Prenume</th><th>C.N.P.</th><th>Telefon</th><th>Actiuni</th></tr>
+                                    <tr><th>Nume</th><th>Prenume</th><th>C.N.P.</th><th>Telefon</th><th style="width:160px">Actiuni</th></tr>
                                 </thead>
                                 <tbody>
                                     <?php if(!$resultNotFound){ echo$table;} ?>

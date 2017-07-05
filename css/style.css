@@ -384,3 +384,18 @@ table.dataTable thead .sorting:after {
 .form-wrapper #submit::-moz-focus-inner {
 	border: 0;
 }
+
+.active-btn-page > a{
+    background-color: #fb3d50!important;
+    border-color: #fb3d50!important;
+}
+
+.pagination>li>a:hover {
+    background-color: #00c2c7;
+    color: #fff;
+}
+
+.pagination>li>a {
+    background-color: #35cbd2;
+    color: #fff;
+}
