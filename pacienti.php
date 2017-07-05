@@ -87,7 +87,7 @@ if($rows > 0) {
 		<TD>'.$row["cnp"].'</TD>
 		<TD>'.$row["telefon"].'</TD>
 		<TD>
-                    <a href="" class="btn btn-default">
+                    <a href="pacienti-vizualizare.php?user='.$row["id"].'" class="btn btn-default">
                         <i class="fa fa-eye" aria-hidden="true"></i>
                     </a>
                     <a href="pacienti-editare.php?user='.$row["id"].'" class="btn btn-default">
