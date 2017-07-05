@@ -13,7 +13,15 @@ $searchdetails2 = '';
 $resultNotFound = '';
 $paginationStructure = '';
 $querySearch = '';
-$actionMessage = array("", "Persoana a fost adaugata!", "Persoana a fost editata!");
+$actionMessage = array("Persoana a fost stearsa!", "Persoana a fost adaugata!", "Persoana a fost editata!");
+
+if(isset($_POST['delete'])){
+	$id = mysqli_real_escape_string($con, $_POST['id']);
+	$query = "UPDATE `persoane` SET `sters`=1 WHERE `id`='$id'";
+	mysqli_query($con, $query);
+	$_GET['action'] = 0;
+}
+
 if(isset($_GET['search'])){
     $querySearch = $_GET['search']; 
     $min_length = 3;
