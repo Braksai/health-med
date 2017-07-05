@@ -5,6 +5,11 @@ if (!isset($_SESSION['user']))
 
 include_once 'header.php';
 
+function dateFormat($date)
+{
+$format = "Data ".substr($date, 0, strpos($date," "))." ora ".substr($date, strpos($date," ")+1);
+return $format;
+}
 
 $error = false;
 
@@ -83,13 +88,13 @@ else{
                     <div class="form-group row">
                         <label for="modificat" class="col-sm-2 control-label label-helper">Modificat in:</label>
                         <div class="col-sm-6">
-                            <input class='form-control' type='text' id="" name='modificat' value='<?php echo !empty($row['modificat']) ? $row['modificat'] : "Nu a fost modificat."; ?>' readonly/>
+                            <input class='form-control' type='text' id="" name='modificat' value='<?php echo !empty($row['modificat']) ? dateFormat($row['modificat']) : "Nu a fost modificat."; ?>' readonly/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="adaugat" class="col-sm-2 control-label label-helper">Creat in:</label>
                         <div class="col-sm-6">
-                            <input class='form-control' type='text' id="adaugat" name='adaugat' value='<?php echo $row['adaugat'] ?>' readonly/>
+                            <input class='form-control' type='text' id="adaugat" name='adaugat' value='<?php echo dateFormat($row['adaugat']) ?>' readonly/>
                         </div>
                     </div>
 		<?php

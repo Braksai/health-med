@@ -58,10 +58,10 @@
                                     <a href="pacienti0.php">Tensiune arteriala</a>
                                 </li>
                                 <li>
-                                    <a href="pacienti2.php">Temperatura</a>
+                                    <a href="grafic-temperatura.php">Temperatura</a>
                                 </li>
                                 <li>
-                                    <a href="pacienti3.php">Ritmul respirator</a>
+                                    <a href="grafic-ritm-respirator.php">Ritmul respirator</a>
                                 </li>
                                 <li>
                                     <a href="pacienti4.php">Ritmul cardiac</a>

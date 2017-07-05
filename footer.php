@@ -31,6 +31,9 @@ $(function() {
     });
     
     var url = window.location;
+    if(url.pathname.indexOf("pacienti") == 1){
+	url= url.origin + "/pacienti.php";
+    }
     // var element = $('ul.nav a').filter(function() {
     //     return this.href == url;
     // }).addClass('active').parent().parent().addClass('in').parent();

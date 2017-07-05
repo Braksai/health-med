@@ -1,0 +1,26 @@
+.tooltip 
+{
+    pointer-events:none;
+    opacity:0;
+    transition: opacity 0.3s;
+    text-shadow:1px 1px 0px gray;
+}
+
+
+g.tooltip rect 
+{
+    fill: #ffffff;
+    stroke: #000000;
+}
+
+
+rect:hover + g.tooltip 
+{
+  opacity:1;
+}
+
+
+#chart
+{
+text-align: center;
+}
