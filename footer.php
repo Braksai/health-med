@@ -31,8 +31,11 @@ $(function() {
     });
     
     var url = window.location;
-    if(url.pathname.indexOf("pacienti") == 1){
-	url= url.origin + "/pacienti.php";
+    if(url.pathname.indexOf("pacienti") > 1){
+        var arrayPath = url.pathname.split('/');
+        arrayPath[arrayPath.length - 1] = "pacienti.php";
+        var newArrayPath = arrayPath.join('/');
+	url= url.origin + newArrayPath;
     }
     // var element = $('ul.nav a').filter(function() {
     //     return this.href == url;
