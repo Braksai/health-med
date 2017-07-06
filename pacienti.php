@@ -13,7 +13,7 @@ $searchdetails2 = '';
 $resultNotFound = '';
 $paginationStructure = '';
 $querySearch = '';
-$actionMessage = array("Persoana a fost stearsa!", "Persoana a fost adaugata!", "Persoana a fost editata!");
+$actionMessage = array("Pacientul a fost sters!", "Pacientul a fost adaugat!", "Pacientul a fost editat!");
 
 if(isset($_POST['delete'])){
 	$id = mysqli_real_escape_string($con, $_POST['id']);
@@ -120,11 +120,12 @@ if($rows > 0) {
 	</TR>';
     }
 } else {
-    $resultNotFound = "Nu exista persoane";
+    $resultNotFound = "Nu exista pacienti";
     if ($querySearch) {
         $resultNotFound .= " cu numele, prenumele, sau cnpul ".$querySearch;
     }
     $resultNotFound .= "!";
+    $table.='<tr><td colspan="5" class="text-center medium-size-font">'.$resultNotFound.'</td></tr>';
 }
 
 ?>
@@ -165,7 +166,7 @@ if($rows > 0) {
                        id="search"
                        value="<?php echo !empty($querySearch) ? $querySearch : '';?>" 
                        size="32" 
-                       maxlength="128" 
+                       maxlength="32" 
                        class="form-control"
                        style="height: 42px;">
                 <a href="javascript:{}" onclick="document.getElementById('cautare-pacient').submit(); return false;" id="submit"><i class="fa fa-search" aria-hidden="true"></i> Cauta</a>
@@ -181,7 +182,7 @@ if($rows > 0) {
                                     <tr><th>Nume</th><th>Prenume</th><th>C.N.P.</th><th>Telefon</th><th style="width:160px">Actiuni</th></tr>
                                 </thead>
                                 <tbody>
-                                    <?php if(!$resultNotFound){ echo$table;} ?>
+                                    <?php echo $table; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -190,7 +191,6 @@ if($rows > 0) {
             </div>
         </div>
     </div>
-<?php if($resultNotFound){echo$resultNotFound;} ?>
     <div class="row text-center"><?php echo $paginationStructure; ?></div>
     <div class="row text-center mb15"><?php if(!$resultNotFound){echo $searchdetails2.' , '.$searchdetails1;} ?></div>
 </div>
