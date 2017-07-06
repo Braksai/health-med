@@ -55,15 +55,15 @@ while($row = mysqli_fetch_array($sql, MYSQLI_ASSOC))
 
 
 
-$chart .='
+echo'
 		<script src="js/chart.js"></script>
                 <SCRIPT LANGUAGE="JavaScript">
 
-			var val=new Array($val);
-			var cat=new Array($cat);
-			var val2 = new Array($val2);
-			var val3 = new Array($val3);
-			var bars=$i;
+			var val=new Array('.$val.');
+			var cat=new Array('.$cat.');
+			var val2 = new Array('.$val2.');
+			var val3 = new Array('.$val3.');
+			var bars='.$i.';
 			var s = 0;
 			var useCatColors = false;
 			console.log(val);
@@ -101,7 +101,7 @@ $chart .='
 
 			chart("chart1");
 
-			val=new Array($val);
+			val=new Array('.$val3.');
 			useMultipleVal = false;
 			var title = "Evolutia  pacientului (Ritm cardiac)";
 			chart("chart2");
