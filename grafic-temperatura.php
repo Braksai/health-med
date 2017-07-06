@@ -28,7 +28,7 @@ echo'		<script src="js/chart.js"></script>
                 <SCRIPT LANGUAGE="JavaScript">
 
 			var val=new Array('.$row['hipotermie'].', '.$row['normala'].', '.$row['febra'].');
-			var cat=new Array("hipotermie", "temperatura normala", "febra");
+			var cat=new Array("Hipotermie", "Temperatura normala", "Febra");
 			var bars=3;
 			var s = 0;
 			var useCatColors = true;
