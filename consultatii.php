@@ -7,7 +7,7 @@ include_once 'header.php';
 
 $error = false;
 if(!isset($_GET['user'])){
-	$error = true;
+	header('Location: pacienti.php');
 }
 else{
     $user = mysqli_real_escape_string($con, $_GET['user']);

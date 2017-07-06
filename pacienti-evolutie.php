@@ -13,7 +13,7 @@ include_once 'header.php';
             <h1 class="page-header">Grafic temperatura pacienti <i class="fa fa-user-circle" aria-hidden="true"></i></h1>
         </div>
     </div>
-    <div class="container">
+    <div>
         <div class="row" style="margin-top: 30px;">
             <div class="col-lg-12"> 
 		<DIV id="chart1"></DIV>
@@ -25,7 +25,7 @@ if(!isset($_GET['user'])){
 }
 
 $user = mysqli_real_escape_string($con, $_GET['user']);
-$limit = 3;
+$limit = 10;
 $query = "SELECT `tensiune_sis`, `tensiune_dia`, `ritm_cardiac`, `adaugat` FROM `consultatii` WHERE `idPersoana` = $user ORDER BY `id` DESC LIMIT $limit;";
 
 
@@ -69,7 +69,7 @@ echo'
 			var catColors = new Array("#19a9d5","#5cb85c","#fb3d50");
 
 			var useValColors = true;
-			var valColors = new Array("#19a9d5","#1cec41","#fb3a3a");
+			var valColors = new Array("#19a9d5","#5cb85c","#fb3d50");
 			var neutralVal = new Array(90, 120);
 
 			var useMultipleVal = true;
@@ -94,7 +94,7 @@ echo'
 			category.push({words: words});
 			}
 
-			chart("chart1");
+			chart("chart1", "40%", "40%");
 
 			val=new Array('.$val3.');
 			useMultipleVal = false;
@@ -102,7 +102,7 @@ echo'
 			s -=21;
 			s = Math.floor(s / 6);
 			neutralVal = new Array(60, 100);
-			chart("chart2");
+			chart("chart2", "40%", "40%");
 </SCRIPT>';
 ?>
             </div>

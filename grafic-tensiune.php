@@ -13,10 +13,10 @@ include_once 'header.php';
             <h1 class="page-header">Grafic temperatura pacienti <i class="fa fa-user-circle" aria-hidden="true"></i></h1>
         </div>
     </div>
-    <div class="container">
-        <div class="row" style="margin-top: 30px;">
+    <div>
+        <div class="row">
             <div class="col-lg-12"> 
-		<DIV id="chart"></DIV>
+		<DIV id="chart" style="margin-top: -30px;"></DIV>
 <?php
 
 $query = "SELECT (SELECT count(*) FROM `consultatii` C1 WHERE `id` = (SELECT MAX(`id`) FROM `consultatii` C2 WHERE C1.idPersoana = C2.idPersoana ) AND C1.tensiune_sis<90) AS hipotensiune, 
@@ -62,7 +62,7 @@ echo'		<script src="js/chart.js"></script>
 			category.push({words: words});
 			}
 
-			chart("chart");
+			chart("chart", "90%", "90%");
 </SCRIPT>';
 ?>
             </div>

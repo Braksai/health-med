@@ -14,11 +14,12 @@ function dateFormat($date)
 $error = false;
 
 if(!isset($_GET['user'])){
-	$error = true;
+	header('Location: pacienti.php');
 }
 else{
 	$user = mysqli_real_escape_string($con, $_GET['user']);
-	$query = "SELECT * FROM `persoane` WHERE `id`='$user';";
+	$query = "SELECT `nume`, `prenume`, `telefon`, `cnp`, `email`, `adresa`, `oras`, `sex`, `varsta`, `modificat`, persoane.`adaugat`, count(consultatii.`id`) AS consultatii FROM `persoane`
+	LEFT JOIN `consultatii` ON consultatii.`idpersoana` = persoane.`id` WHERE persoane.`id`=$user GROUP BY consultatii.`idPersoana`;";
 	$row = mysqli_fetch_array(mysqli_query($con, $query));
 }
 ?>
@@ -100,7 +101,7 @@ else{
                     <div class="form-group row">
                         <label class="col-sm-2 control-label label-helper"> </label>
                         <div class="col-sm-6">
-                            <a href="pacienti-evolutie.php?user=<?php echo $user; ?>" class="btn btn-default" style="line-height: 26px;"><i class="fa fa-lg fa-arrow-circle-o-right" aria-hidden="true"></i> Evolutie pacient</a>
+                            <a href="<?php echo $row['consultatii'] > 2 ? "pacienti-evolutie.php?user=".$user : "#" ?>" class="btn btn-default" style="line-height: 26px; <?php echo $row['consultatii'] > 2 ? "" : "cursor: not-allowed; background: #eee;" ?>"><i class="fa fa-lg fa-arrow-circle-o-right" aria-hidden="true"></i> Evolutie pacient</a>
                             <a href="consultatii.php?user=<?php echo $user; ?>" class="btn btn-default" style="line-height: 26px;"><i class="fa fa-lg fa-arrow-circle-o-right" aria-hidden="true"></i> Consultatii pacient</a>
                         </div>
                     </div>

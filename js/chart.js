@@ -9,7 +9,7 @@ function GetFill(value)
 	return valColors[1];
 }
 
-function chart(parent)
+function chart(parent, svgwidth = 0 , svgheight = 300)
 {
 
 if(bars)
@@ -76,8 +76,8 @@ var width=s*bars+10-bars%10;
 
 
 var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-svg.setAttributeNS(null, 'height', '300');
-svg.setAttributeNS(null,'width', 90+width);
+svg.setAttributeNS(null, 'height', svgheight);
+svg.setAttributeNS(null,'width', svgwidth == 0 ? 90+width : svgwidth);
 svg.setAttributeNS(null, 'viewBox', '0 0 '+ (90+width) +' 300');
 svg.setAttributeNS(null,'style', 'overflow: hidden;');
 svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
