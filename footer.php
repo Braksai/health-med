@@ -4,12 +4,22 @@
 
 <script src="js/bootstrap.min.js"></script>
 
+<script src="js/jquery.waypoints.js"></script>
+
+<script src="js/jquery.counterup.js"></script>
+
 <script src="js/metisMenu.js"></script>
 
 <script language="javascript">
 $(function() {
     $('#side-menu').metisMenu();
+    
+    $('.counter').counterUp({
+        delay: 10,
+        time: 1000
+    });
 });
+
 
 $(function() {
     $(window).bind("load resize", function() {
