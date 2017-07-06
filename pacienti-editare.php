@@ -9,7 +9,7 @@ include_once 'header.php';
 $error = false;
 
 if(!isset($_GET['user'])){
-	$error = true;
+	header('Location: pacienti.php');
 }
 else{
 	$user = mysqli_real_escape_string($con, $_GET['user']);
@@ -109,14 +109,6 @@ else{
                             <button type="submit" class="form-control btn btn-default" name="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i> Editeaza</button>
                         </div>
                     </div>
-		<?php
-           	if($error){                                    
-                        echo '<div class="alert alert-danger alert-dismissable fade in">
-                          	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        	<strong>Nu s-a selectat nici un pacient!</strong>
-                          	</div>';
-               	}
-               	?>
                 </form>
             </div>
         </div>
