@@ -25,12 +25,12 @@ $query = "SELECT (SELECT count(*) FROM `consultatii` C1 WHERE `id` = (SELECT MAX
 		(SELECT count(*) FROM `consultatii` C1 WHERE `id` = (SELECT MAX(`id`) FROM `consultatii` C2 WHERE C1.idPersoana = C2.idPersoana ) AND C1.tensiune_sis > 139 AND C1.tensiune_sis <=159) AS hipertensiune1, 
 		(SELECT count(*) FROM `consultatii` C1 WHERE `id` = (SELECT MAX(`id`) FROM `consultatii` C2 WHERE C1.idPersoana = C2.idPersoana ) AND C1.tensiune_sis > 159 AND C1.tensiune_sis <=179) AS hipertensiune2, 
 		(SELECT count(*) FROM `consultatii` C1 WHERE `id` = (SELECT MAX(`id`) FROM `consultatii` C2 WHERE C1.idPersoana = C2.idPersoana ) AND C1.tensiune_sis > 179) AS urgenta;";
-$row = mysqli_fetch_row(mysqli_query($con, $query));
+$row = mysqli_fetch_array(mysqli_query($con, $query), MYSQLI_ASSOC);
 
 echo'		<script src="js/chart.js"></script>
                 <SCRIPT LANGUAGE="JavaScript">
 
-			var val=new Array('.$row['hipotensiune'].', '.$row['normala'].', '.$row['prehipertensiune'].', '.$row['hipertensiune1'].', '.$row['hipertensiune2'].', '.$row['urgenta']);
+			var val=new Array('.$row['hipotensiune'].', '.$row['normala'].', '.$row['prehipertensiune'].', '.$row['hipertensiune1'].', '.$row['hipertensiune2'].', '.$row['urgenta'].');
 			var cat=new Array("hipotermie", "temperatura normala", "febra");
 			var bars=6;
 			var s = 0;

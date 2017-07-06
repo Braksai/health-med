@@ -55,7 +55,7 @@
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Statistici<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="pacienti0.php">Tensiune arteriala</a>
+                                    <a href="grafic-tensiune.php">Tensiune arteriala</a>
                                 </li>
                                 <li>
                                     <a href="grafic-temperatura.php">Temperatura</a>
