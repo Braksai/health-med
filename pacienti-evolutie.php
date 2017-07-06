@@ -5,12 +5,17 @@ if (!isset($_SESSION['user']))
 
 include_once 'header.php';
 
+if(!isset($_GET['user'])){
+	header('Location: pacienti.php');
+}
+$user = mysqli_real_escape_string($con, $_GET['user']);
+
 ?>
 <div id="page-wrapper">
 
     <div class="row">
         <div class="col-lg-12 clearfix">
-            <h1 class="page-header">Grafic temperatura pacienti <i class="fa fa-user-circle" aria-hidden="true"></i></h1>
+            <h1 class="page-header">Grafic temperatura pacienti <i class="fa fa-user-circle" aria-hidden="true"></i><a href="pacienti-vizualizare.php?user=<?php echo$user;?>" class="btn btn-default pull-right" style="line-height: 26px;"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Inapoi</a></h1>
         </div>
     </div>
     <div>
@@ -20,11 +25,6 @@ include_once 'header.php';
 		<DIV id="chart2"></DIV>
 <?php
 
-if(!isset($_GET['user'])){
-	header('Location: pacienti.php');
-}
-
-$user = mysqli_real_escape_string($con, $_GET['user']);
 $limit = 10;
 $query = "SELECT `tensiune_sis`, `tensiune_dia`, `ritm_cardiac`, `adaugat` FROM `consultatii` WHERE `idPersoana` = $user ORDER BY `id` DESC LIMIT $limit;";
 
