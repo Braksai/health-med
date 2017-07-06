@@ -85,6 +85,7 @@ else{
     } else {
         $resultNotFound = "Nu exista consultatii";
         $resultNotFound .= "!";
+        $table.='<tr><td colspan="6" class="text-center medium-size-font">'.$resultNotFound.'</td></tr>';
     }
 }
 ?>
@@ -92,7 +93,7 @@ else{
 
     <div class="row">
         <div class="col-lg-12 clearfix">
-            <h1 class="page-header">Lista consultatii pentru pacientul <?php echo $numeCompletPacient;?> <i class="fa fa-list-alt" aria-hidden="true"></i> <a href="consultatii-adaugare.php?user=<?php echo $user; ?>" class="btn btn-default pull-right" style="line-height: 26px;"><i class="fa fa-plus" aria-hidden="true"></i> Adauga consultatie</a></h1>
+            <h1 class="page-header">Lista consultatii pentru pacientul <?php echo $numeCompletPacient;?> <i class="fa fa-list-alt" aria-hidden="true"></i> <a href="pacienti-vizualizare.php?user=<?php echo $user; ?>" class="btn btn-default pull-right" style="line-height: 26px;"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Inapoi</a><a href="consultatii-adaugare.php?user=<?php echo $user; ?>" class="btn btn-default pull-right" style="line-height: 26px; margin-right: 5px; "><i class="fa fa-plus" aria-hidden="true"></i> Adauga consultatie</a></h1>
         </div>
     </div>
     <div class="container">
@@ -124,7 +125,7 @@ else{
                                     <tr><th>Ritm Cardiac</th><th>Ritm Respirator</th><th>Tensiune Arteriala</th><th>Temperatura</th><th style="width:390px">Observatii</th><th>Data</th></tr>
                                 </thead>
                                 <tbody>
-                                    <?php if(!$resultNotFound){ echo $table;} ?>
+                                    <?php echo $table; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -133,7 +134,6 @@ else{
             </div>
         </div>
     </div>
-<?php if($resultNotFound){echo $resultNotFound;} ?>
     <div class="row text-center"><?php echo $paginationStructure; ?></div>
     <div class="row text-center mb15"><?php if(!$resultNotFound){echo $searchdetails2.' , '.$searchdetails1;} ?></div>
 </div>
