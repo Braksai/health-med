@@ -416,3 +416,7 @@ table.dataTable thead .sorting:after {
     background-color: #35cbd2;
     color: #fff;
 }
+
+.light-teal {
+    background-color: #35cbd2!important;
+}
