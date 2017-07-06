@@ -38,6 +38,8 @@ echo'		<script src="js/chart.js"></script>
 			var valColors = new Array("#19a9d5","#1cec41","#fb3a3a");
 			var neutralVal = new Array(18, 25);
 
+			var useMultipleVal = false;
+
 			var category = [ ];
 
 			for(var j =0;j<cat.length;j++){

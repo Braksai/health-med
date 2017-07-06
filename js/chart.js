@@ -85,6 +85,22 @@ chart.appendChild(svg);
 
 var svgNS = svg.namespaceURI;
 
+if(typeof title != 'undefined')
+{
+var group = document.createElementNS(svgNS, 'g');
+svg.appendChild(group);
+var text = document.createElementNS(svgNS, 'text');
+text.setAttributeNS(null, 'text-anchor','middle');
+text.setAttributeNS(null, 'x', (90+width)/2);
+text.setAttributeNS(null, 'y', 30);
+text.setAttributeNS(null, 'stroke-width','2');
+text.setAttributeNS(null, 'fill', '#000000');
+text.setAttributeNS(null, 'font-size', 20);
+var txt = document.createTextNode(title);
+text.appendChild(txt);
+group.appendChild(text);
+}
+
 var group = document.createElementNS(svgNS, 'g');
 svg.appendChild(group);
 
@@ -218,7 +234,7 @@ text.setAttributeNS(null, 'x', 55+(s-21)/2 +s*j);
 text.setAttributeNS(null, 'y', start-4);
 text.setAttributeNS(null, 'stroke-width','2');
 text.setAttributeNS(null, 'fill', fill);
-var txt = document.createTextNode(val[j]);
+var txt = document.createTextNode(useMultipleVal ? val[j]+ " / "+val2[j] : val[j]);
 text.appendChild(txt);
 txtgroup.appendChild(text);
 }
