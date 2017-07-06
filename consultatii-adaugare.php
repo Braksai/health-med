@@ -7,7 +7,7 @@ include_once 'header.php';
 
 $error = false;
 if(!isset($_GET['user'])){
-	header('Location: consultatii.php');
+	header('Location: pacienti.php');
 }
 else{
 	$user = mysqli_real_escape_string($con, $_GET['user']);
@@ -25,7 +25,7 @@ else{
 	VALUES ($user, $ritm_cardiac, $ritm_respirator, $tensiune_sis, $tensiune_dia, $temperatura, '$observatii');";
 	mysqli_query($con, $query);
 	mysqli_close($con);
-	header('Location: consultatii.php?action=1');
+	header('Location: consultatii.php?user='.$user.'&action=1');
 	}
 }
 ?>
@@ -33,7 +33,7 @@ else{
 
     <div class="row">
         <div class="col-lg-12 clearfix">
-            <h1 class="page-header">Adaugare consultatie <i class="fa fa-user-circle" aria-hidden="true"></i> <a href="consultatii.php" class="btn btn-default pull-right" style="line-height: 26px;"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Inapoi</a></h1>
+            <h1 class="page-header">Adaugare consultatie <i class="fa fa-calendar-plus-o" aria-hidden="true"></i> <a href="consultatii.php?user=<?php echo $user; ?>" class="btn btn-default pull-right" style="line-height: 26px;"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Inapoi</a></h1>
         </div>
     </div>
     <div class="container">
@@ -73,7 +73,7 @@ else{
                     <div class="form-group row">
                         <label for="observatii" class="col-sm-2 control-label label-helper">Observatii:</label>
                         <div class="col-sm-6">
-                            <input class='form-control' type='text' id="observatii" name='observatii'/>
+                            <textarea class='form-control' rows="4" id="observatii" name='observatii'></textarea>
                         </div>
                     </div>
                     <div class="form-group row">

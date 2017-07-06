@@ -31,7 +31,7 @@ $(function() {
     });
     
     var url = window.location;
-    if(url.pathname.indexOf("pacienti") > 1){
+    if(url.pathname.indexOf("pacienti") > 1 || url.pathname.indexOf("consultatii") > 1){
         var arrayPath = url.pathname.split('/');
         arrayPath[arrayPath.length - 1] = "pacienti.php";
         var newArrayPath = arrayPath.join('/');
