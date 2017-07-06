@@ -20,7 +20,7 @@ include_once 'header.php';
 <?php
 
 $query = "SELECT (SELECT count(*) FROM `consultatii` C1 WHERE `id` = (SELECT MAX(`id`) FROM `consultatii` C2 WHERE C1.idPersoana = C2.idPersoana ) AND C1.temperatura<35) AS hipotermie, 
-		(SELECT count(*) FROM `consultatii` C1 WHERE `id` = (SELECT MAX(`id`) FROM `consultatii` C2 WHERE C1.idPersoana = C2.idPersoana ) AND C1.temperatura >= 35 AND C1.temperatura =<37) AS normala, 
+		(SELECT count(*) FROM `consultatii` C1 WHERE `id` = (SELECT MAX(`id`) FROM `consultatii` C2 WHERE C1.idPersoana = C2.idPersoana ) AND C1.temperatura >= 35 AND C1.temperatura <=37) AS normala, 
 		(SELECT count(*) FROM `consultatii` C1 WHERE `id` = (SELECT MAX(`id`) FROM `consultatii` C2 WHERE C1.idPersoana = C2.idPersoana ) AND C1.temperatura > 37) AS febra;";
 $row = mysqli_fetch_array(mysqli_query($con, $query), MYSQLI_ASSOC);
 
