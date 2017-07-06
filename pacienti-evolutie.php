@@ -42,7 +42,7 @@ if($row = mysqli_fetch_array($sql, MYSQLI_ASSOC))
 	$val = $row['tensiune_sis'];
 	$val2 = $row['tensiune_dia'];
 	$val3 = $row['ritm_cardiac'];
-	$cat = '"'.$row['adaugat'].'"';
+	$cat = '"'.substr($row['adaugat'], 0 , strpos($row['adaugat'], " ")).'"';
 }
 while($row = mysqli_fetch_array($sql, MYSQLI_ASSOC))
 {
@@ -50,7 +50,7 @@ while($row = mysqli_fetch_array($sql, MYSQLI_ASSOC))
 	$val .= ', '.$row['tensiune_sis'];
 	$val2 .= ', '.$row['tensiune_dia'];
 	$val3 .= ', '.$row['ritm_cardiac'];
-	$cat .= ', "'.$row['adaugat'].'"';
+	$cat .= ', "'.substr($row['adaugat'], 0 , strpos($row['adaugat'], " ")).'"';
 }
 
 
@@ -66,16 +66,11 @@ echo'
 			var bars='.$i.';
 			var s = 0;
 			var useCatColors = false;
-			console.log(val);
-			console.log(val2);
-			console.log(val3);
-			console.log(cat);
-			console.log(bars);
 			var catColors = new Array("#19a9d5","#5cb85c","#fb3d50");
 
 			var useValColors = true;
 			var valColors = new Array("#19a9d5","#1cec41","#fb3a3a");
-			var neutralVal = new Array(18, 25);
+			var neutralVal = new Array(90, 120);
 
 			var useMultipleVal = true;
 		
@@ -104,6 +99,9 @@ echo'
 			val=new Array('.$val3.');
 			useMultipleVal = false;
 			var title = "Evolutia  pacientului (Ritm cardiac)";
+			s -=21;
+			s = Math.floor(s / 6);
+			neutralVal = new Array(60, 100);
 			chart("chart2");
 </SCRIPT>';
 ?>

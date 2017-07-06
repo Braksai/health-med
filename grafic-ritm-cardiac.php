@@ -22,7 +22,7 @@ include_once 'header.php';
 $query = "SELECT (SELECT count(*) FROM `consultatii` C1 WHERE `id` = (SELECT MAX(`id`) FROM `consultatii` C2 WHERE C1.idPersoana = C2.idPersoana ) AND C1.ritm_cardiac<60) AS bradicardie, 
 		(SELECT count(*) FROM `consultatii` C1 WHERE `id` = (SELECT MAX(`id`) FROM `consultatii` C2 WHERE C1.idPersoana = C2.idPersoana ) AND C1.ritm_cardiac >= 60 AND C1.ritm_cardiac <=100) AS normala, 
 		(SELECT count(*) FROM `consultatii` C1 WHERE `id` = (SELECT MAX(`id`) FROM `consultatii` C2 WHERE C1.idPersoana = C2.idPersoana ) AND C1.ritm_cardiac > 100) AS tahicardie;";
-$row = mysqli_fetch_array(mysqli_query($con, $query), MYSQLI_ASSOC);
+$row = mysqli_fetch_row(mysqli_query($con, $query));
 
 echo'		<script src="js/chart.js"></script>
                 <SCRIPT LANGUAGE="JavaScript">

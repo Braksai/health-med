@@ -19,20 +19,23 @@ include_once 'header.php';
 		<DIV id="chart"></DIV>
 <?php
 
-$query = "SELECT (SELECT count(*) FROM `consultatii` C1 WHERE `id` = (SELECT MAX(`id`) FROM `consultatii` C2 WHERE C1.idPersoana = C2.idPersoana ) AND C1.temperatura<35) AS hipotermie, 
-		(SELECT count(*) FROM `consultatii` C1 WHERE `id` = (SELECT MAX(`id`) FROM `consultatii` C2 WHERE C1.idPersoana = C2.idPersoana ) AND C1.temperatura >= 35 AND C1.temperatura <=37) AS normala, 
-		(SELECT count(*) FROM `consultatii` C1 WHERE `id` = (SELECT MAX(`id`) FROM `consultatii` C2 WHERE C1.idPersoana = C2.idPersoana ) AND C1.temperatura > 37) AS febra;";
+$query = "SELECT (SELECT count(*) FROM `consultatii` C1 WHERE `id` = (SELECT MAX(`id`) FROM `consultatii` C2 WHERE C1.idPersoana = C2.idPersoana ) AND C1.tensiune_sis<90) AS hipotensiune, 
+		(SELECT count(*) FROM `consultatii` C1 WHERE `id` = (SELECT MAX(`id`) FROM `consultatii` C2 WHERE C1.idPersoana = C2.idPersoana ) AND C1.tensiune_sis >= 90 AND C1.tensiune_sis <=120) AS normala, 
+		(SELECT count(*) FROM `consultatii` C1 WHERE `id` = (SELECT MAX(`id`) FROM `consultatii` C2 WHERE C1.idPersoana = C2.idPersoana ) AND C1.tensiune_sis > 120 AND C1.tensiune_sis <=139) AS prehipertensiune, 
+		(SELECT count(*) FROM `consultatii` C1 WHERE `id` = (SELECT MAX(`id`) FROM `consultatii` C2 WHERE C1.idPersoana = C2.idPersoana ) AND C1.tensiune_sis > 139 AND C1.tensiune_sis <=159) AS hipertensiune1, 
+		(SELECT count(*) FROM `consultatii` C1 WHERE `id` = (SELECT MAX(`id`) FROM `consultatii` C2 WHERE C1.idPersoana = C2.idPersoana ) AND C1.tensiune_sis > 159 AND C1.tensiune_sis <=179) AS hipertensiune2, 
+		(SELECT count(*) FROM `consultatii` C1 WHERE `id` = (SELECT MAX(`id`) FROM `consultatii` C2 WHERE C1.idPersoana = C2.idPersoana ) AND C1.tensiune_sis > 179) AS urgenta;";
 $row = mysqli_fetch_row(mysqli_query($con, $query));
 
 echo'		<script src="js/chart.js"></script>
                 <SCRIPT LANGUAGE="JavaScript">
 
-			var val=new Array('.$row['hipotermie'].', '.$row['normala'].', '.$row['febra'].');
+			var val=new Array('.$row['hipotensiune'].', '.$row['normala'].', '.$row['prehipertensiune'].', '.$row['hipertensiune1'].', '.$row['hipertensiune2'].', '.$row['urgenta']);
 			var cat=new Array("hipotermie", "temperatura normala", "febra");
-			var bars=3;
+			var bars=6;
 			var s = 0;
 			var useCatColors = true;
-			var catColors = new Array("#19a9d5","#5cb85c","#fb3d50");
+			var catColors = new Array("#19a9d5","#5cb85c","#fb3d50", "#fb3d50", "#fb3d50", "#fb3d50");
 
 			var useValColors = false;
 			var valColors = new Array("#19a9d5","#1cec41","#fb3a3a");
