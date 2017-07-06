@@ -1,4 +1,15 @@
-function chart()
+function GetFill(value)
+{
+	if(value < neutralVal[0]){
+		return valColors[0];
+	}
+	if(value > neutralVal[1]){
+		return valColors[2];
+	}
+	return valColors[1];
+}
+
+function chart(parent)
 {
 
 if(bars)
@@ -60,13 +71,14 @@ i/=3;
 
 
 }
-var chart = document.getElementById("chart");
+var chart = document.getElementById(parent);
 var width=s*bars+10-bars%10;
 
 
 var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 svg.setAttributeNS(null, 'height', '300');
 svg.setAttributeNS(null,'width', 90+width);
+svg.setAttributeNS(null, 'viewBox', '0 0 '+ (90+width) +' 300');
 svg.setAttributeNS(null,'style', 'overflow: hidden;');
 svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
 chart.appendChild(svg);
@@ -180,13 +192,20 @@ height+=2;
 }
 
 var rect = document.createElementNS(svgNS, 'rect');
+var fill = '#c124dc';
+if(useCatColors && useValColors){
+console.log('error');
+}
+else{
+fill = useCatColors ? catColors[j] : GetFill(val[j]);
+}
 rect.setAttributeNS(null, 'height', height);
 rect.setAttributeNS(null, 'width', s-20);
 rect.setAttributeNS(null, 'x', 55+s*j);
 rect.setAttributeNS(null, 'y', start);
 rect.setAttributeNS(null, 'stroke','none');
 rect.setAttributeNS(null, 'stroke-width','0');
-rect.setAttributeNS(null, 'fill','#3366cc');
+rect.setAttributeNS(null, 'fill', fill);
 group.appendChild(rect);
 
 var txtgroup = document.createElementNS(svgNS, 'g');
@@ -198,7 +217,7 @@ text.setAttributeNS(null, 'text-anchor','middle');
 text.setAttributeNS(null, 'x', 55+(s-21)/2 +s*j);
 text.setAttributeNS(null, 'y', start-4);
 text.setAttributeNS(null, 'stroke-width','2');
-text.setAttributeNS(null, 'fill','red');
+text.setAttributeNS(null, 'fill', fill);
 var txt = document.createTextNode(val[j]);
 text.appendChild(txt);
 txtgroup.appendChild(text);

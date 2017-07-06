@@ -31,6 +31,12 @@ echo'		<script src="js/chart.js"></script>
 			var cat=new Array("hipotermie", "temperatura normala", "febra");
 			var bars=3;
 			var s = 0;
+			var useCatColors = true;
+			var catColors = new Array("#19a9d5","#5cb85c","#fb3d50");
+
+			var useValColors = false;
+			var valColors = new Array("#19a9d5","#1cec41","#fb3a3a");
+			var neutralVal = new Array(18, 25);
 
 			var category = [ ];
 
@@ -51,7 +57,7 @@ echo'		<script src="js/chart.js"></script>
 			category.push({words: words});
 			}
 
-			chart()
+			chart("chart");
 </SCRIPT>';
 ?>
             </div>
