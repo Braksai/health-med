@@ -64,7 +64,7 @@
                                     <a href="grafic-ritm-respirator.php">Ritmul respirator</a>
                                 </li>
                                 <li>
-                                    <a href="pacienti4.php">Ritmul cardiac</a>
+                                    <a href="grafic-ritm-cardiac.php">Ritmul cardiac</a>
                                 </li>
                             </ul>
                         </li>

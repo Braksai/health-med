@@ -5,12 +5,6 @@ if (!isset($_SESSION['user']))
 
 include_once 'header.php';
 
-
-$name = mysqli_real_escape_string($con, $_POST['nume']);
-
-$query = "";
-mysqli_query($con, $query);
-
 ?>
 <div id="page-wrapper">
 
@@ -23,10 +17,17 @@ mysqli_query($con, $query);
         <div class="row" style="margin-top: 30px;">
             <div class="col-lg-12"> 
 		<DIV id="chart"></DIV>
-		<script src="js/chart.js"></script>
+<?php
+
+$query = "SELECT (SELECT count(*) FROM `consultatii` C1 WHERE `id` = (SELECT MAX(`id`) FROM `consultatii` C2 WHERE C1.idPersoana = C2.idPersoana ) AND C1.temperatura<35) AS hipotermie, 
+		(SELECT count(*) FROM `consultatii` C1 WHERE `id` = (SELECT MAX(`id`) FROM `consultatii` C2 WHERE C1.idPersoana = C2.idPersoana ) AND C1.temperatura >= 35 AND C1.temperatura =<37) AS normala, 
+		(SELECT count(*) FROM `consultatii` C1 WHERE `id` = (SELECT MAX(`id`) FROM `consultatii` C2 WHERE C1.idPersoana = C2.idPersoana ) AND C1.temperatura > 37) AS febra;";
+$row = mysqli_fetch_array(mysqli_query($con, $query), MYSQLI_ASSOC);
+
+echo'		<script src="js/chart.js"></script>
                 <SCRIPT LANGUAGE="JavaScript">
 
-			var val=new Array(20,35,10);
+			var val=new Array('.$row['hipotermie'].', '.$row['normala'].', '.$row['febra'].');
 			var cat=new Array("hipotermie", "temperatura normala", "febra");
 			var bars=3;
 			var s = 0;
@@ -51,7 +52,8 @@ mysqli_query($con, $query);
 			}
 
 			chart()
-</SCRIPT>
+</SCRIPT>';
+?>
             </div>
         </div>
     </div>

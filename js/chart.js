@@ -158,7 +158,7 @@ text.setAttributeNS(null, 'font-size','11');
 text.setAttributeNS(null, 'stroke','none');
 text.setAttributeNS(null, 'stroke-width','0');
 text.setAttributeNS(null, 'fill','#444444');
-var txt = document.createTextNode(j*i);
+var txt = document.createTextNode(Math.floor( j*i*10 ) /10);
 text.appendChild(txt);
 group.appendChild(text);
 }
