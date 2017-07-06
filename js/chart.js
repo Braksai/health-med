@@ -79,7 +79,7 @@ var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 svg.setAttributeNS(null, 'height', svgheight);
 svg.setAttributeNS(null,'width', svgwidth == 0 ? 90+width : svgwidth);
 svg.setAttributeNS(null, 'viewBox', '0 0 '+ (90+width) +' 300');
-svg.setAttributeNS(null,'style', 'overflow: hidden;');
+svg.setAttributeNS(null,'style', 'overflow: hidden; display: block; margin: 0 auto;');
 svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
 chart.appendChild(svg);
 

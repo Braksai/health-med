@@ -16,7 +16,7 @@ include_once 'header.php';
     <div>
         <div class="row">
             <div class="col-lg-12"> 
-		<DIV id="chart" style="margin-top: -30px;"></DIV>
+		<DIV id="chart" style="margin-top: -7%;"></DIV>
 <?php
 
 $query = "SELECT (SELECT count(*) FROM `consultatii` C1 WHERE `id` = (SELECT MAX(`id`) FROM `consultatii` C2 WHERE C1.idPersoana = C2.idPersoana ) AND C1.ritm_cardiac<60) AS bradicardie, 
