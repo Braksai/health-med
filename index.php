@@ -111,7 +111,12 @@ $query = mysqli_query($con, $sqlConsultatiiRecente);
                                             .'<td>'.$row["adaugat"].'</td>'
                                         .'</tr>';
                                     $counter++;
-                                }?>
+                                }
+                                if($counter == 1) {
+                                    $resultNotFound = "Nu exista consultatii recente!";
+                                    echo '<tr><td colspan="9" class="text-center medium-size-font">'.$resultNotFound.'</td></tr>';
+                                }
+                                ?>
                             </tbody>
                         </table>
                     </div>
