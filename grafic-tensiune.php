@@ -10,7 +10,7 @@ include_once 'header.php';
 
     <div class="row">
         <div class="col-lg-12 clearfix">
-            <h1 class="page-header">Grafic temperatura pacienti <i class="fa fa-user-circle" aria-hidden="true"></i></h1>
+            <h1 class="page-header">Grafic tensiune arteriala pacienti <i class="fa fa-user-circle" aria-hidden="true"></i></h1>
         </div>
     </div>
     <div>
