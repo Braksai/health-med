@@ -10,12 +10,17 @@ if(!isset($_GET['user'])){
 }
 $user = mysqli_real_escape_string($con, $_GET['user']);
 
+$sqlPacient = "SELECT `nume`, `prenume` FROM `persoane` WHERE `id` ='$user';";
+$query = mysqli_query($con, $sqlPacient);
+$row = mysqli_fetch_array($query, MYSQLI_ASSOC);
+$numeCompletPacient = $row['nume'].' '.$row['prenume'];
+
 ?>
 <div id="page-wrapper">
 
     <div class="row">
         <div class="col-lg-12 clearfix">
-            <h1 class="page-header">Grafic temperatura pacienti <i class="fa fa-user-circle" aria-hidden="true"></i><a href="pacienti-vizualizare.php?user=<?php echo$user;?>" class="btn btn-default pull-right" style="line-height: 26px;"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Inapoi</a></h1>
+            <h1 class="page-header">Grafic evolutie pentru pacientul <?php echo$numeCompletPacient; ?> <i class="fa fa-user-circle" aria-hidden="true"></i><a href="pacienti-vizualizare.php?user=<?php echo$user;?>" class="btn btn-default pull-right" style="line-height: 26px;"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Inapoi</a></h1>
         </div>
     </div>
     <div>
