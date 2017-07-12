@@ -35,7 +35,7 @@ echo'		<script src="js/chart.js"></script>
 			var bars=6;
 			var s = 0;
 			var useCatColors = true;
-			var catColors = new Array("#19a9d5","#5cb85c","#fb3d50", "#fb3d50", "#fb3d50", "#fb3d50");
+			var catColors = new Array("#19a9d5","#5cb85c","#FFEB3B", "#FF9800", "#fb3d50", "#B71C1C");
 
 			var useValColors = false;
 			var valColors = new Array("#19a9d5","#1cec41","#fb3a3a");
