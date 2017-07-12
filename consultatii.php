@@ -93,12 +93,12 @@ else{
 
     <div class="row">
         <div class="col-lg-12 clearfix">
-            <h1 class="page-header">Lista consultatii pentru pacientul <?php echo $numeCompletPacient;?> <i class="fa fa-list-alt" aria-hidden="true"></i> <a href="pacienti-vizualizare.php?user=<?php echo $user; ?>" class="btn btn-default pull-right" style="line-height: 26px;"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Inapoi</a><a href="consultatii-adaugare.php?user=<?php echo $user; ?>" class="btn btn-default pull-right" style="line-height: 26px; margin-right: 5px; "><i class="fa fa-plus" aria-hidden="true"></i> Adauga consultatie</a></h1>
+            <h1 class="page-header">Lista consultatii <?php echo $numeCompletPacient;?> <i class="fa fa-list-alt" aria-hidden="true"></i> <a href="pacienti-vizualizare.php?user=<?php echo $user; ?>" class="btn btn-default pull-right" style="line-height: 26px;"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Inapoi</a><a href="consultatii-adaugare.php?user=<?php echo $user; ?>" class="btn btn-default pull-right" style="line-height: 26px; margin-right: 5px; "><i class="fa fa-plus" aria-hidden="true"></i> Adauga consultatie</a></h1>
         </div>
     </div>
-    <div class="container">
+    <div class="">
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-8 col-lg-offset-2">
 		<?php
 		if(isset($_GET['action'])){
 		echo'
@@ -116,7 +116,7 @@ else{
             </div>
         </div>
         <div class="row" style="margin-top: 30px;">
-            <div class="col-lg-12"> 
+            <div class="col-lg-8 col-lg-offset-2"> 
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="table-responsive">

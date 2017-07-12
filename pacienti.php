@@ -136,9 +136,9 @@ if($rows > 0) {
             <h1 class="page-header">Lista pacienti <i class="fa fa-users" aria-hidden="true"></i> <a href="pacienti-adaugare.php" class="btn btn-default pull-right" style="line-height: 26px;"><i class="fa fa-plus" aria-hidden="true"></i> Adauga pacient</a></h1>
         </div>
     </div>
-    <div class="container">
+    <div class="">
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-8 col-lg-offset-2">
 		<?php
 		if(isset($_GET['action'])){
 		echo'
@@ -173,7 +173,7 @@ if($rows > 0) {
             </form>
         </div>
         <div class="row" style="margin-top: 30px;">
-            <div class="col-lg-12"> 
+            <div class="col-lg-8 col-lg-offset-2"> 
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="table-responsive">
