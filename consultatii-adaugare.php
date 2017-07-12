@@ -13,12 +13,12 @@ else{
 	$user = mysqli_real_escape_string($con, $_GET['user']);
 	if(isset($_POST['submit'])){
 
-	$ritm_cardiac = mysqli_real_escape_string($con, $_POST['ritm_cardiac']);
-	$ritm_respirator = mysqli_real_escape_string($con, $_POST['ritm_respirator']);
-	$tensiune_sis = mysqli_real_escape_string($con, $_POST['tensiune_sis']);
-	$tensiune_dia = mysqli_real_escape_string($con, $_POST['tensiune_dia']);
-	$temperatura = mysqli_real_escape_string($con, $_POST['temperatura']);
-	$observatii = mysqli_real_escape_string($con, $_POST['observatii']);
+	$ritm_cardiac = mysqli_real_escape_string($con, htmlspecialchars($_POST['ritm_cardiac']));
+	$ritm_respirator = mysqli_real_escape_string($con, htmlspecialchars($_POST['ritm_respirator']));
+	$tensiune_sis = mysqli_real_escape_string($con, htmlspecialchars($_POST['tensiune_sis']));
+	$tensiune_dia = mysqli_real_escape_string($con, htmlspecialchars($_POST['tensiune_dia']));
+	$temperatura = mysqli_real_escape_string($con, htmlspecialchars($_POST['temperatura']));
+	$observatii = mysqli_real_escape_string($con, htmlspecialchars($_POST['observatii']));
 	
 
 	$query = "INSERT INTO consultatii (idPersoana, ritm_cardiac, ritm_respirator, tensiune_sis, tensiune_dia, temperatura, observatii) 

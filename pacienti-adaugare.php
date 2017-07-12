@@ -11,15 +11,15 @@ if(isset($_POST['submit'])){
 		$error = true;
 	}
 	else{
-		$name = mysqli_real_escape_string($con, $_POST['nume']);
-		$surname = mysqli_real_escape_string($con, $_POST['prenume']);
-		$phone = mysqli_real_escape_string($con, $_POST['telefon']);
-		$cnp = mysqli_real_escape_string($con, $_POST['cnp']);
-		$email = mysqli_real_escape_string($con, $_POST['email']);
-		$address = mysqli_real_escape_string($con, $_POST['adresa']);
-		$city = mysqli_real_escape_string($con, $_POST['oras']);
-		$sex = mysqli_real_escape_string($con, $_POST['sex']);
-		$age = mysqli_real_escape_string($con, $_POST['varsta']);
+		$name = mysqli_real_escape_string($con, htmlspecialchars($_POST['nume']));
+		$surname = mysqli_real_escape_string($con, htmlspecialchars($_POST['prenume']));
+		$phone = mysqli_real_escape_string($con, htmlspecialchars($_POST['telefon']));
+		$cnp = mysqli_real_escape_string($con, htmlspecialchars($_POST['cnp']));
+		$email = mysqli_real_escape_string($con, htmlspecialchars($_POST['email']));
+		$address = mysqli_real_escape_string($con, htmlspecialchars($_POST['adresa']));
+		$city = mysqli_real_escape_string($con, htmlspecialchars($_POST['oras']));
+		$sex = mysqli_real_escape_string($con, htmlspecialchars($_POST['sex']));
+		$age = mysqli_real_escape_string($con, htmlspecialchars($_POST['varsta']));
 
 		$query = "INSERT INTO persoane (nume, prenume, telefon, cnp, email, adresa, oras, sex, varsta) 
 		VALUES ('$name', '$surname', '$phone', '$cnp', '$email', '$address', '$city', '$sex', '$age');";
