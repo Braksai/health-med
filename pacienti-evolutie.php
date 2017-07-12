@@ -79,7 +79,7 @@ echo'
 
 			var useMultipleVal = true;
 		
-			var title = "Evolutia  pacientului (Tensiune arteriala)";
+			var title = "Evolutie tensiune arteriala";
 			var category = [ ];
 
 			for(var j =0;j<cat.length;j++){
@@ -103,7 +103,7 @@ echo'
 
 			val=new Array('.$val3.');
 			useMultipleVal = false;
-			var title = "Evolutia  pacientului (Ritm cardiac)";
+			var title = "Evolutie ritm cardiac";
 			s -=21;
 			s = Math.floor(s / 6);
 			neutralVal = new Array(60, 100);

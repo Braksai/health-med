@@ -19,12 +19,12 @@ include_once 'header.php';
 		<DIV id="chart" style="margin-top: -30px;"></DIV>
 <?php
 
-$query = "SELECT (SELECT count(*) FROM `consultatii` C1 WHERE `id` = (SELECT MAX(`id`) FROM `consultatii` C2 WHERE C1.idPersoana = C2.idPersoana ) AND C1.tensiune_sis<90) AS hipotensiune, 
-		(SELECT count(*) FROM `consultatii` C1 WHERE `id` = (SELECT MAX(`id`) FROM `consultatii` C2 WHERE C1.idPersoana = C2.idPersoana ) AND C1.tensiune_sis >= 90 AND C1.tensiune_sis <=120) AS normala, 
-		(SELECT count(*) FROM `consultatii` C1 WHERE `id` = (SELECT MAX(`id`) FROM `consultatii` C2 WHERE C1.idPersoana = C2.idPersoana ) AND C1.tensiune_sis > 120 AND C1.tensiune_sis <=139) AS prehipertensiune, 
-		(SELECT count(*) FROM `consultatii` C1 WHERE `id` = (SELECT MAX(`id`) FROM `consultatii` C2 WHERE C1.idPersoana = C2.idPersoana ) AND C1.tensiune_sis > 139 AND C1.tensiune_sis <=159) AS hipertensiune1, 
-		(SELECT count(*) FROM `consultatii` C1 WHERE `id` = (SELECT MAX(`id`) FROM `consultatii` C2 WHERE C1.idPersoana = C2.idPersoana ) AND C1.tensiune_sis > 159 AND C1.tensiune_sis <=179) AS hipertensiune2, 
-		(SELECT count(*) FROM `consultatii` C1 WHERE `id` = (SELECT MAX(`id`) FROM `consultatii` C2 WHERE C1.idPersoana = C2.idPersoana ) AND C1.tensiune_sis > 179) AS urgenta;";
+$query = "SELECT (SELECT count(*) FROM `consultatii` C1 INNER JOIN `persoane` ON persoane.id=C1.idPersoana WHERE C1.id = (SELECT MAX(`id`) FROM `consultatii` C2 WHERE C1.idPersoana = C2.idPersoana ) AND persoane.sters=0 AND C1.tensiune_sis<90) AS hipotensiune, 
+		(SELECT count(*) FROM `consultatii` C1 INNER JOIN `persoane` ON persoane.id=C1.idPersoana WHERE C1.id = (SELECT MAX(`id`) FROM `consultatii` C2 WHERE C1.idPersoana = C2.idPersoana ) AND persoane.sters=0 AND C1.tensiune_sis >= 90 AND C1.tensiune_sis <=120) AS normala, 
+		(SELECT count(*) FROM `consultatii` C1 INNER JOIN `persoane` ON persoane.id=C1.idPersoana WHERE C1.id = (SELECT MAX(`id`) FROM `consultatii` C2 WHERE C1.idPersoana = C2.idPersoana ) AND persoane.sters=0 AND C1.tensiune_sis > 120 AND C1.tensiune_sis <=139) AS prehipertensiune, 
+		(SELECT count(*) FROM `consultatii` C1 INNER JOIN `persoane` ON persoane.id=C1.idPersoana WHERE C1.id = (SELECT MAX(`id`) FROM `consultatii` C2 WHERE C1.idPersoana = C2.idPersoana ) AND persoane.sters=0 AND C1.tensiune_sis > 139 AND C1.tensiune_sis <=159) AS hipertensiune1, 
+		(SELECT count(*) FROM `consultatii` C1 INNER JOIN `persoane` ON persoane.id=C1.idPersoana WHERE C1.id = (SELECT MAX(`id`) FROM `consultatii` C2 WHERE C1.idPersoana = C2.idPersoana ) AND persoane.sters=0 AND C1.tensiune_sis > 159 AND C1.tensiune_sis <=179) AS hipertensiune2, 
+		(SELECT count(*) FROM `consultatii` C1 INNER JOIN `persoane` ON persoane.id=C1.idPersoana WHERE C1.id = (SELECT MAX(`id`) FROM `consultatii` C2 WHERE C1.idPersoana = C2.idPersoana ) AND persoane.sters=0 AND C1.tensiune_sis > 179) AS urgenta;";
 $row = mysqli_fetch_array(mysqli_query($con, $query), MYSQLI_ASSOC);
 
 echo'		<script src="js/chart.js"></script>
