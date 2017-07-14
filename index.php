@@ -19,7 +19,7 @@ $sqlConsultatiiRecente = "SELECT c.`id`, p.`nume`, p.`prenume`, c.`ritm_cardiac`
 $query = mysqli_query($con, $sqlConsultatiiRecente);
 
 ?>
-<div id="page-wrapper">
+<div id="page-wrapper" class="clearfix">
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">Bun venit in aplicatia HealthMed!</h1>
