@@ -39,6 +39,14 @@ $(function() {
             $("#page-wrapper").css("min-height", (height) + "px");
         }
     });
+
+        var height = (($(window).innerHeight > 0) ? $(window).innerHeight : $(window).height) - 1;
+	var topOffset = 50;
+        height = height - topOffset;
+        if (height < 1) height = 1;
+        if (height > topOffset) {
+            $("#page-wrapper").css("min-height", (height) + "px");
+        }
     
     var url = window.location;
     if(url.pathname.indexOf("pacienti") > 1 || url.pathname.indexOf("consultatii") > 1){
