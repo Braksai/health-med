@@ -29,7 +29,7 @@ else{
     $row = mysqli_fetch_row($query);
     $rows = $row[0];
     if($rows > 0) {
-        $page_rows = 4;
+        $page_rows = 10;
         $last = ceil($rows/$page_rows);
         if($last < 1){
             $last = 1;
@@ -89,7 +89,7 @@ else{
     }
 }
 ?>
-<div id="page-wrapper">
+<div id="page-wrapper" class="clearfix">
 
     <div class="row">
         <div class="col-lg-12 clearfix">

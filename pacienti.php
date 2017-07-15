@@ -37,7 +37,7 @@ $query = mysqli_query($con, $sql);
 $row = mysqli_fetch_row($query);
 $rows = $row[0];
 if($rows > 0) {
-    $page_rows = 4;
+    $page_rows = 10;
     $last = ceil($rows/$page_rows);
     if($last < 1){
         $last = 1;
